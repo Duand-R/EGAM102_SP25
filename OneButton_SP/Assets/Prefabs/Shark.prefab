@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 1969759928018515046}
   - component: {fileID: 5596476208015815522}
   - component: {fileID: 46662746796636019}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shark
-  m_TagString: Untagged
+  m_TagString: Shark
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 4861acfaa05ccac44b49d616de799ca9, type: 3}
+  m_Sprite: {fileID: 5502050986301561134, guid: 48caef658ae52714db4d75a9ea30e352, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -154,8 +154,8 @@ PolygonCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.955, y: 2.925}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -163,9 +163,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5773587}
-      - {x: -0.5, y: -0.28866667}
-      - {x: 0.5, y: -0.28866667}
+    - - {x: 0.07252455, y: 0.78042746}
+      - {x: -1.0028362, y: -0.9752324}
+      - {x: 0.8964672, y: -0.9123779}
   m_UseDelaunayMesh: 0
 --- !u!114 &46662746796636019
 MonoBehaviour:
@@ -179,4 +179,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef602a1975c315f44ac54903c62b35b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  speed: 1
+  retreatDistance: 1

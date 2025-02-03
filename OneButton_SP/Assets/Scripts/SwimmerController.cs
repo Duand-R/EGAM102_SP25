@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 public class SwimmerController : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class SwimmerController : MonoBehaviour
     public float staminaDepletionRate = 1f;
     public float staminaRegenRate = 1f;
     public float currentStamina;
+    public Collider2D playerCollider;
 
     public float CurrentStamina
     {
@@ -34,6 +36,7 @@ public class SwimmerController : MonoBehaviour
 
         RegenerateStamina();
         CheckStamina();
+        Debug.Log(currentStamina);
     }
 
     void Swim()
@@ -55,13 +58,18 @@ public class SwimmerController : MonoBehaviour
     {
         if (currentStamina <= 0)
         {
-            GameOver("You ran out of stamina and drowned!");
+            SceneManager.LoadScene("DrownScene");
+            
         }
     }
-    void GameOver(string message)
+    
+
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log(message);
-        
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        if (collision.gameObject.CompareTag("Shark"))
+        {
+            SceneManager.LoadScene("LoseScene");
+            Destroy(collision.gameObject);
+        }
     }
 }
