@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3700593766138072705}
   m_Layer: 0
   m_Name: Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,8 +78,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 5328332788402992666, guid: 2d44b17eeec12564fb9a3d5085436a2d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -140,3 +140,6 @@ MonoBehaviour:
   moveSpeed: 3
   attackRange: 1
   pauseDuration: 2
+  maxHealth: 3
+  healthHearts: []
+  eatSFX: {fileID: 8300000, guid: 28e2a282faff2d849845a3ba6b0315f1, type: 3}

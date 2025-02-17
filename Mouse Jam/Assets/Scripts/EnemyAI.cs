@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -7,20 +8,36 @@ public class EnemyAI : MonoBehaviour
         Searching,
         Moving,
         Attacking,
-        Paused
+        Paused 
     }
+
     public float moveSpeed = 3f;
     public float attackRange = 1f;
-    public float pauseDuration = 2f;
+    public float pauseDuration = 2f; 
+    public int maxHealth = 3; 
+    public Image[] healthHearts;
+    public AudioClip eatSFX;
 
     private EnemyState currentState;
     private GameObject target;
     private float pauseTimer;
+    private GameManager gameManager;
+    private int currentHealth;
+    private AudioSource audioSource;
+
     void Start()
     {
         currentState = EnemyState.Searching;
-    }
+        gameManager = FindAnyObjectByType<GameManager>();
+        currentHealth = maxHealth;
+        UpdateHealthUI();
 
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            audioSource = gameObject.AddComponent<AudioSource>();
+        }
+    }
 
     void Update()
     {
@@ -40,6 +57,7 @@ public class EnemyAI : MonoBehaviour
                 break;
         }
     }
+
     void SearchForTarget()
     {
         target = GameObject.FindWithTag("Target");
@@ -57,10 +75,8 @@ public class EnemyAI : MonoBehaviour
             return;
         }
 
-        
         transform.position = Vector2.MoveTowards(transform.position, target.transform.position, moveSpeed * Time.deltaTime);
 
-       
         if (Vector2.Distance(transform.position, target.transform.position) <= attackRange)
         {
             currentState = EnemyState.Attacking;
@@ -76,6 +92,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         Destroy(target);
+        if (eatSFX != null && audioSource != null)
+        {
+            audioSource.PlayOneShot(eatSFX);
+        }
+
+        TakeDamage(1);
         currentState = EnemyState.Searching;
     }
 
@@ -95,5 +117,30 @@ public class EnemyAI : MonoBehaviour
             currentState = EnemyState.Paused;
             pauseTimer = pauseDuration;
         }
+    }
+
+    void TakeDamage(int damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            currentHealth = 0;
+            Debug.Log("Baby is out of health!");
+            gameManager.GameOver();
+        }
+        UpdateHealthUI();
+    }
+
+    void UpdateHealthUI()
+    {
+        for (int i = 0; i < healthHearts.Length; i++)
+        {
+            healthHearts[i].enabled = i < currentHealth;
+        }
+    }
+
+    public int GetCurrentHealth()
+    {
+        return currentHealth;
     }
 }
