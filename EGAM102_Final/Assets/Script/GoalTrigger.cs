@@ -1,8 +1,8 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GoalTrigger : MonoBehaviour
 {
-    public GameObject endCanvas; // Drag your EndCanvas here
     public float pulseDuration = 1.2f;  // Total time to animate
     public float pulseSpeed = 5f;       // How fast it pulses
     public float scaleAmount = 1.5f;    // Max size
@@ -16,17 +16,11 @@ public class GoalTrigger : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             triggered = true;
-            StartCoroutine(PulseThenDisappear());
-
-            if (endCanvas != null)
-            {
-                endCanvas.SetActive(true);
-                Time.timeScale = 0f; // Optional: pause the game
-            }
+            StartCoroutine(PulseThenLoadNextScene());
         }
     }
 
-    private System.Collections.IEnumerator PulseThenDisappear()
+    private System.Collections.IEnumerator PulseThenLoadNextScene()
     {
         float timer = 0f;
         Vector3 originalScale = transform.localScale;
@@ -39,6 +33,15 @@ public class GoalTrigger : MonoBehaviour
             yield return null;
         }
 
-        gameObject.SetActive(false); // Disappear!
+        gameObject.SetActive(false); // Hide goal object
+
+        // Load the next scene
+        int current = SceneManager.GetActiveScene().buildIndex;
+        int next = current + 1;
+
+        if (next < SceneManager.sceneCountInBuildSettings)
+            SceneManager.LoadScene(next);
+        else
+            Debug.Log("No more scenes! Game complete!");
     }
 }

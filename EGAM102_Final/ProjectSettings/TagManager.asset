@@ -6,6 +6,7 @@ TagManager:
   tags:
   - StickSlime
   - Pushable
+  - PressurePad
   layers:
   - Default
   - TransparentFX
