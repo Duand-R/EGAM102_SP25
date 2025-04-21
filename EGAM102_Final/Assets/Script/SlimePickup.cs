@@ -68,12 +68,12 @@ public class SlimePickup : MonoBehaviour
 
     void Drop()
     {
-        Vector2 dropDirection = Vector2.right;
-        float input = Input.GetAxisRaw("Horizontal");
-        if (input < 0) dropDirection = Vector2.left;
-        else if (input > 0) dropDirection = Vector2.right;
+        // Check which direction the slime is facing
+        bool facingLeft = slimeSprite != null && slimeSprite.flipX;
 
-        Vector2 dropPosition = transform.position + (Vector3)dropDirection * 1f;
+        // Drop to the correct side based on facing direction
+        Vector2 dropDirection = facingLeft ? Vector2.left : Vector2.right;
+        Vector2 dropPosition = (Vector2)transform.position + dropDirection * 1f;
 
         carriedObject.transform.SetParent(null);
         carriedObject.transform.position = dropPosition;
@@ -86,6 +86,7 @@ public class SlimePickup : MonoBehaviour
 
         carriedObject = null;
     }
+
 
     private void OnTriggerEnter2D(Collider2D other)
     {

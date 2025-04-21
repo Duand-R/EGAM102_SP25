@@ -14,6 +14,8 @@ public class SlimeController : MonoBehaviour
     private bool jumpInProgress = false;
     private float currentVelocityX;
     private SlimeSFX sfx;
+    private SpriteRenderer spriteRenderer;
+
 
     void Start()
     {
@@ -22,6 +24,8 @@ public class SlimeController : MonoBehaviour
         stickWall = GetComponent<StickWall>();
         rb.freezeRotation = true;
         sfx = GetComponent<SlimeSFX>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     void Update()
@@ -30,6 +34,12 @@ public class SlimeController : MonoBehaviour
         float targetVelocityX = moveInput * moveSpeed;
         currentVelocityX = Mathf.Lerp(currentVelocityX, targetVelocityX, Time.deltaTime * 10f);
         rb.linearVelocity = new Vector2(currentVelocityX, rb.linearVelocity.y);
+
+        if (moveInput < 0)
+            spriteRenderer.flipX = true;
+        else if (moveInput > 0)
+            spriteRenderer.flipX = false;
+
 
         bool grounded = IsGroundedBox();
         bool sticking = stickWall != null && stickWall.IsSticking();

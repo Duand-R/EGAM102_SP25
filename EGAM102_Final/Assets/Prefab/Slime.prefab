@@ -86,7 +86,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: -8366212842325426901, guid: 206d9d8733e9d2145a64fcaca0644342, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -162,7 +162,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.0933334, y: 0.83}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -353,10 +353,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce0f5f2c35f0ba74eb7ac4ca26b169bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpSFX: {fileID: 8300000, guid: 9342d103dca1ab94fb30ee5ab67e6969, type: 3}
   pickupSFX: {fileID: 8300000, guid: f3d3d30ea94f2e5489134759b89697e5, type: 3}
   detachSFX: {fileID: 8300000, guid: 50373c903f9e97941bfbfe4d583b20ae, type: 3}
-  jumpSFX: {fileID: 8300000, guid: 9342d103dca1ab94fb30ee5ab67e6969, type: 3}
-  wallMoveLoopSFX: {fileID: 8300000, guid: e6000d7016c5e0247babb0ab19af9a13, type: 3}
+  wallMoveSFX: {fileID: 8300000, guid: e6000d7016c5e0247babb0ab19af9a13, type: 3}
 --- !u!1 &3598234620482347866
 GameObject:
   m_ObjectHideFlags: 0
